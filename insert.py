@@ -1,4 +1,5 @@
 import pandas as pd
+import re
 """This module contains functions related to insertion of data"""
 
 def insert(cursor):

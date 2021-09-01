@@ -1,9 +1,10 @@
 """This module contains functions related to searching the database"""
 
 
+import pandas as pd
+
 def list_tables():
     """Function to list all tables in the database"""
-    cursor = connection.cursor(buffered=True)
     cursor.execute("SHOW TABLES") 
     for table_name in cursor:
         print(table_name)
@@ -12,7 +13,6 @@ def list_tables():
 
 def list_columns():
     """Function to list all columns of a table"""
-    cursor = connection.cursor(buffered=True)
     table=input('Enter table name: ')
     query='DESCRIBE '+str(table)
     cursor.execute(query)
@@ -20,7 +20,7 @@ def list_columns():
         print(column_name[0])
     cursor.close()
     
-def read_table():
+def read_table(connection):
     """Function to read a table with options to select columns and enter conditions"""
     table=input('Enter table name:')
     select_column=input('Do you want to select columns [y/n]').lower()

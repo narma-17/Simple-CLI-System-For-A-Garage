@@ -1,3 +1,6 @@
+import pandas as pd
+import re
+
 '''Invoicing function'''
 def name_vehicle(j_code,connection):
     query="""SELECT j.vehicle_no,c.first_name,c.last_name FROM job as j JOIN vehicle AS v

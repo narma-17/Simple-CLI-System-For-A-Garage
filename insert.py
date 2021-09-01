@@ -1,11 +1,16 @@
+import mysql.connector as sql
+from sqlalchemy import create_engine
+import pandas as pd
+import re
+
 
 """This module contains functions related to insertion of data"""
 
 def insert():
     """This function asks the user for the table they want to enter data into, 
     retrieves the columns of the table, and asks the user for the entry value
-    into each column"""
-    
+    into each column
+    """ 
     cursor = connection.cursor(buffered=True)
     table=input('Enter table name: ')
     query='DESCRIBE '+str(table) # Getting the column names and other table details

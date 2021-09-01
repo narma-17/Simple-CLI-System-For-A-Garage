@@ -1,17 +1,11 @@
-import mysql.connector as sql
-from sqlalchemy import create_engine
 import pandas as pd
-import re
-
-
 """This module contains functions related to insertion of data"""
 
-def insert():
+def insert(cursor):
     """This function asks the user for the table they want to enter data into, 
     retrieves the columns of the table, and asks the user for the entry value
     into each column
     """ 
-    cursor = connection.cursor(buffered=True)
     table=input('Enter table name: ')
     query='DESCRIBE '+str(table) # Getting the column names and other table details
     cursor.execute(query)
@@ -33,9 +27,9 @@ def insert():
     
         
 
-def insert_from_excel():
+def insert_from_excel(alch_connection):
     """This function uses pandas to_sql function to insert data from an excel sheet into the database"""
-    alch_connection = engine.connect()
+
     excel_file=input('Enter excel file path: ')
     table_name=input('Enter table name: ')
     excel_file=excel_file.replace('\\','/')

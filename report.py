@@ -1,6 +1,6 @@
 """Module containing functions for common reports that will be generated from the system"""
 
-def job_price_report():
+def job_price_report(connection):
     """ This function gets the amounts charged for each job"""
     specify_date=input('Do you want to specify dates? [y/n]')
     if specify_date=='y':
@@ -15,7 +15,7 @@ def job_price_report():
     
       
     
-def customer_due_report():
+def customer_due_report(connection):
     """ This function gets amound outstanding from customers"""
     select_cust=input('Do you want to select customer? [y/n]')
     if select_cust=='y':
@@ -45,7 +45,7 @@ def customer_due_report():
     df = pd.read_sql_query(query,connection)
     print(df)
 	
-def employee_allocation():
+def employee_allocation(connection):
     """ This function gets a report on the allocation of employee hours and services to jobs and services"""
     query='''SELECT jr.job_code,jr.service_code,sl.description,es.employee_id,es.expertise,es.start_hour,es.end_hour FROM `employee_schedule` AS es 
           JOIN job_requirement AS jr ON es.job_code = jr.job_code
@@ -83,7 +83,7 @@ def employee_allocation():
     print(df)
     
     
-def inventory_report():
+def inventory_report(connection):
     """ This function gets a report on inventory purchase and usage"""
     query='''SELECT mp.material_code,m.material_description,purchase_qty,sum(use_quantity),(purchase_qty-sum(use_quantity))
             AS net_quantity 

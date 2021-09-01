@@ -1,3 +1,6 @@
+import pandas as pd
+import re
+
 """Module containing functions for common reports that will be generated from the system"""
 
 def job_price_report(connection):

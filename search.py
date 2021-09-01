@@ -1,7 +1,7 @@
 """This module contains functions related to searching the database"""
 
-
 import pandas as pd
+import re
 
 def list_tables():
     """Function to list all tables in the database"""

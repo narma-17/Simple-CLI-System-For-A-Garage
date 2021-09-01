@@ -1,5 +1,5 @@
 '''Invoicing function'''
-def name_vehicle(j_code):
+def name_vehicle(j_code,connection):
     query="""SELECT j.vehicle_no,c.first_name,c.last_name FROM job as j JOIN vehicle AS v
             ON j.vehicle_no=v.vehicle_no 
             JOIN customer AS c ON c.customer_id=v.customer_id
@@ -13,7 +13,7 @@ def name_vehicle(j_code):
  
  
 
-def service_list(j_code):
+def service_list(j_code,connection):
     query="""SELECT s.service_code, s.description, s.price FROM service_list AS s 
             JOIN job_requirement AS jr ON s.service_code=jr.service_code
             WHERE jr.job_code='{}'"""
@@ -25,7 +25,7 @@ def service_list(j_code):
     return (service_code,service_desc,service_price)
 
 
-def spare_part(j_code):
+def spare_part(j_code,connection):
     query="""SELECT description,quantity,total_parts_price FROM spare_part
     WHERE job_code='{}'
     """
@@ -37,7 +37,7 @@ def spare_part(j_code):
     return (description,quantity,price)
 
 
-def invoice():
+def invoice(connection):
     j_code=input('Enter job number: ')
     nameVehicle=name_vehicle(j_code)
     services=service_list(j_code)

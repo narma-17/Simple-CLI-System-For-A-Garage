@@ -80,7 +80,7 @@ def run():
       reportMenu()
    elif n == 4:
       os.system(‘cls’)
-      inv.invoice()
+      inv.invoice(connection)
       exit()
    elif n == 5:
       os.system(‘cls’)
@@ -90,16 +90,18 @@ def run():
       run()
 
 
-def insertMenu():
+def insertMenu(connection,engine):
    displayInsertMenu()
    n = int(input(“Enter option : “))
    if n == 1:
       os.system(‘cls’)
-      ins.insert()
+      cursor = connection.cursor(buffered=True)
+      ins.insert(cursor)
       exit()
    elif n == 2:
       os.system(‘cls’)
-      ins.insert_from_excel()
+      alch_connection = engine.connect()
+      ins.insert_from_excel(alch_connection)
       exit()
    elif n == 3:
       os.system(‘cls’)
@@ -109,20 +111,22 @@ def insertMenu():
       os.system(‘cls’)
       insertMenu()
 
-def searchMenu():
+def searchMenu(connection):
    displaySearchMenu()
    n = int(input(“Enter option : “))
    if n == 1:
       os.system(‘cls’)
+      cursor = connection.cursor(buffered=True)
       srch.list_tables()
       exit()
    elif n == 2:
       os.system(‘cls’)
+      cursor = connection.cursor(buffered=True)
       srch.list_columns()
       exit()
    elif n == 3:
       os.system(‘cls’)
-      srch.read_table()
+      srch.read_table(connection)
       exit()
    elif n == 4:
       os.system(‘cls’)
@@ -132,24 +136,24 @@ def searchMenu():
       os.system(‘cls’)
       searchMenu()
 
-def reportMenu():
+def reportMenu(connection):
    displayReportMenu()
    n = int(input(“Enter option : “))
    if n == 1:
       os.system(‘cls’)
-      rp.job_price_report()
+      rp.job_price_report(connection)
       exit()
    elif n == 2:
       os.system(‘cls’)
-      rp.customer_due_report()
+      rp.customer_due_report(connection)
       exit()
    elif n == 3:
       os.system(‘cls’)
-      rp.employee_allocation()
+      rp.employee_allocation(connection)
       exit()
    elif n == 4:
       os.system(‘cls’)
-      rp.inventory_report()
+      rp.inventory_report(connection)
       exit()
    elif n == 5:
       os.system(‘cls’)

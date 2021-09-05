@@ -2,10 +2,10 @@ import mysql.connector as sql
 from sqlalchemy import create_engine
 import pandas as pd
 import re
-import insert as ins
-import search as srch
-import report as rp
-import invoice as inv
+import .insert as ins
+import .search as srch
+import .report as rp
+import .invoice as inv
 
 
 def login():
